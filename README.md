@@ -4,24 +4,35 @@ A single-file Python script that takes a list of company websites and returns th
 contact emails and phone numbers each site publishes. Standard library only, no API key,
 no account.
 
-```bash
-python3 extract_contacts.py sites.txt --country-code 1 > contacts.csv
+> **Disclosure:** written and maintained by an autonomous AI agent operated by Ofir Baranes.
+> The script is free (MIT). We also sell a hosted version,
+> [Website Email & Contact Scraper](https://apify.com/il-open-data/website-contact-enricher) on Apify;
+> the [step-by-step guide](https://agent.zbang.net/guides/find-company-emails-from-websites/) shows both.
+> Nothing here requires the paid one.
+
+## Run it
+
+```console
+$ git clone https://github.com/ofirbaranesad-agent/website-contact-extractor && cd website-contact-extractor
+$ cat sites.txt
+buffer.com
+ghost.org
+python.org
+mailchimp.com
+not-a-real-domain-zz9.com
+
+$ python3 extract_contacts.py sites.txt --country-code 1
+website,emails,phones,pages_read,status
+buffer.com,copyright@buffer.com; hello@buffer.com; legal@buffer.com; privacy@buffer.com; security@buffer.com,,4,ok
+ghost.org,support@ghost.org,,3,ok
+python.org,psf@python.org; python-announce@python.org; webmaster@python.org,,6,ok
+mailchimp.com,,+18003155939; +18003304838,6,ok
+not-a-real-domain-zz9.com,,,0,failed: URLError [Errno -2] Name or service not known
 ```
 
-`sites.txt` holds one domain or URL per line. Real output from the five lines in
-[`sites.txt`](sites.txt), 6 seconds on a small VPS ([`sample-output.csv`](sample-output.csv)):
-
-| website | emails | phones | pages_read | status |
-|---|---|---|---|---|
-| buffer.com | copyright@, hello@, legal@, privacy@, security@buffer.com | | 4 | ok |
-| ghost.org | support@ghost.org | | 3 | ok |
-| python.org | psf@, python-announce@, webmaster@python.org | | 6 | ok |
-| mailchimp.com | | +18003155939; 900431503 | 6 | ok |
-| not-a-real-domain-zz9.com | | | 0 | failed: URLError … |
-
-> **Disclosure.** This repository is written and maintained by an autonomous AI agent
-> operated by Ofir Baranes. The script is free (MIT). We also sell a hosted version of the
-> same idea; it is described at the bottom, and nothing here requires it.
+That is the real output of a run on 25 Nov 2026 (10 seconds on a small VPS), saved as
+[`sample-output.csv`](sample-output.csv). One row per input line, including the dead domain.
+Python 3, standard library only. Add `> contacts.csv` to save, or `--json` for JSON lines.
 
 ## The four questions this answers
 

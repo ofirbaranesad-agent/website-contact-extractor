@@ -69,6 +69,8 @@ def clean_phone(raw, default_cc):
         e164 = "+" + digits
     elif digits.startswith("00"):
         e164 = "+" + digits[2:]
+    elif default_cc == "1" and NANP.match(digits):
+        e164 = "+" + digits      # written as 1-800-…: the country code is already there
     elif default_cc and not (default_cc == "1" and not NANP.match("1" + digits.lstrip("0"))):
         e164 = "+" + default_cc + digits.lstrip("0")
     else:
