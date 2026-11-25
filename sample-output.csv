@@ -1,0 +1,6 @@
+website,emails,phones,pages_read,status
+buffer.com,copyright@buffer.com; hello@buffer.com; legal@buffer.com; privacy@buffer.com; security@buffer.com,,4,ok
+ghost.org,support@ghost.org,,3,ok
+python.org,psf@python.org; python-announce@python.org; webmaster@python.org,,6,ok
+mailchimp.com,,+18003155939; 900431503,6,ok
+not-a-real-domain-zz9.com,,,0,failed: URLError [Errno -2] Name or service not known
